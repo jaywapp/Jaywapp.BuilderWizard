@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 어셈블리에 대한 일반 정보는 다음 특성 집합을 통해 
 // 제어됩니다. 어셈블리와 관련된 정보를 수정하려면
 // 이러한 특성 값을 변경하세요.
-[assembly: AssemblyTitle("Wizard")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Jaywapp.BuilderWizard")]
+[assembly: AssemblyDescription("Wizard dialog for creating objects in Builder patterns. Users can create and add different views to create objects in the Builder pattern.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Wizard")]
+[assembly: AssemblyProduct("Jaywapp.BuilderWizard")]
 [assembly: AssemblyCopyright("Copyright ©  2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
