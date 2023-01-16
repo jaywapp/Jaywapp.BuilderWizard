@@ -6,6 +6,8 @@ using System.Reactive.Linq;
 using System.Windows;
 using Jaywapp.BuilderWizard.Interface;
 using System;
+using Jaywapp.BuilderWizard.Model.State;
+using Jaywapp.BuilderWizard.Service;
 
 namespace Jaywapp.BuilderWizard.ViewModel
 {
@@ -15,7 +17,7 @@ namespace Jaywapp.BuilderWizard.ViewModel
         private int _currentIndex = 1;
         private IReadOnlyList<IJayBuilderConfigView> _configViews;
 
-        private ObservableAsPropertyHelper<eWizardStatus> _status;
+        private ObservableAsPropertyHelper<IWizardState> _state;
         private ObservableAsPropertyHelper<IJayBuilderConfigView> _currentPage;
         private ObservableAsPropertyHelper<Visibility> _prevVisibility;
         private ObservableAsPropertyHelper<Visibility> _nextVisibility;
@@ -64,9 +66,9 @@ namespace Jaywapp.BuilderWizard.ViewModel
         }
 
         /// <summary>
-        /// Current Status
+        /// State
         /// </summary>
-        public eWizardStatus Status => _status.Value;
+        public IWizardState State => _state.Value;
         
         /// <summary>
         /// Current Page
@@ -111,8 +113,8 @@ namespace Jaywapp.BuilderWizard.ViewModel
 
             // update status
             indexChanges
-                .Select(idx => GetStatus(idx, _configViews.Count))
-                .ToProperty(this, x => x.Status, out _status);
+                .Select(idx => WizardStateFactory.Factory(idx, _configViews.Count))
+                .ToProperty(this, x => x.State, out _state);
 
             // update current page
             indexChanges
@@ -120,53 +122,37 @@ namespace Jaywapp.BuilderWizard.ViewModel
                 .ToProperty(this, x => x.CurrentPage, out _currentPage);
 
             // If status property changed
-            var statusChanges = this.WhenAnyValue(x => x.Status);
+            var stateChanges = this.WhenAnyValue(x => x.State);
 
             // update prev button visibility
-            statusChanges
-                .Select(status => status == eWizardStatus.FirstPage ? Visibility.Collapsed : Visibility.Visible)
+            stateChanges
+                .Select(state=> state.GetPrevVisibility())
                 .ToProperty(this, x => x.PrevVisibility, out _prevVisibility);
 
             // update next button visibility
-            statusChanges
-                .Select(status => status == eWizardStatus.LastPage ? Visibility.Collapsed : Visibility.Visible)
+            stateChanges
+                .Select(state => state.GetNextVisibility())
                 .ToProperty(this, x => x.NextVisibility, out _nextVisibility);
 
             // update cancel button visibility
-            statusChanges
-                .Select(status => status == eWizardStatus.LastPage ? Visibility.Collapsed : Visibility.Visible)
+            stateChanges
+                .Select(state => state.GetCancelVisibility())
                 .ToProperty(this, x => x.CancelVisibility, out _cancelVisibility);
 
             // update finish button visibility
-            statusChanges
-                .Select(status => status == eWizardStatus.LastPage ? Visibility.Visible : Visibility.Collapsed)
+            stateChanges
+                .Select(state => state.GetFinishVisibility())
                 .ToProperty(this, x => x.FinishVisibility, out _finishVisibility);
         }
         #endregion
 
         #region Functions
         /// <summary>
-        /// Determine the status by looking at the <paramref name="index"/>, <paramref name="max"/> values.
-        /// </summary>
-        /// <param name="index"></param>
-        /// <param name="max"></param>
-        /// <returns></returns>
-        private static eWizardStatus GetStatus(int index, int max)
-        {
-            if (index == 1)
-                return eWizardStatus.FirstPage;
-            else if (index == max)
-                return eWizardStatus.LastPage;
-
-            return eWizardStatus.MiddlePage;
-        }
-
-        /// <summary>
         /// Return to the previous step.
         /// </summary>
         private void Prev()
         {
-            if (Status == eWizardStatus.FirstPage)
+            if(State.GetType() == typeof(FirstState))
                 return;
 
             CurrentIndex--;
@@ -177,7 +163,7 @@ namespace Jaywapp.BuilderWizard.ViewModel
         /// </summary>
         private void Next()
         {
-            if (Status == eWizardStatus.LastPage)
+            if (State.GetType() == typeof(LastState))
                 return;
 
             CurrentIndex++;

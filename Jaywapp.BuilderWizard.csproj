@@ -71,14 +71,18 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interface\IWizardState.cs" />
     <Compile Include="JayBuilderWizard.xaml.cs">
       <DependentUpon>JayBuilderWizard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Enums.cs" />
     <Compile Include="Interface\IJayBuilder.cs" />
     <Compile Include="Interface\IJayBuilderConfigView.cs" />
     <Compile Include="Interface\IJayBuilderConfigViewModel.cs" />
+    <Compile Include="Model\State\FirstState.cs" />
+    <Compile Include="Model\State\LastState.cs" />
+    <Compile Include="Model\State\MiddleState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\WizardStateFactory.cs" />
     <Compile Include="ViewModel\WizardViewModel.cs" />
     <Compile Include="View\WizardView.xaml.cs">
       <DependentUpon>WizardView.xaml</DependentUpon>
