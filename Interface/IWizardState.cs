@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Jaywapp.BuilderWizard.Interface
+namespace Jaywapp.Utility.BuilderWizard.Interface
 {
     public interface IWizardState
     {

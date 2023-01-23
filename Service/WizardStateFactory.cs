@@ -1,7 +1,7 @@
-﻿using Jaywapp.BuilderWizard.Interface;
-using Jaywapp.BuilderWizard.Model.State;
+﻿using Jaywapp.Utility.BuilderWizard.Interface;
+using Jaywapp.Utility.BuilderWizard.Model.State;
 
-namespace Jaywapp.BuilderWizard.Service
+namespace Jaywapp.Utility.BuilderWizard.Service
 {
     public static class WizardStateFactory
     {

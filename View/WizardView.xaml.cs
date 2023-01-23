@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace Jaywapp.BuilderWizard.View
+namespace Jaywapp.Utility.BuilderWizard.View
 {
     /// <summary>
     /// WizardView.xaml에 대한 상호 작용 논리

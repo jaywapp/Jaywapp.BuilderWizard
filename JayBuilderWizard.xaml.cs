@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows;
-using Jaywapp.BuilderWizard.ViewModel;
-using Jaywapp.BuilderWizard.Interface;
+using Jaywapp.Utility.BuilderWizard.ViewModel;
+using Jaywapp.Utility.BuilderWizard.Interface;
 
-namespace Jaywapp.BuilderWizard
+namespace Jaywapp.Utility.BuilderWizard
 {
     public partial class JayBuilderWizard : Window
     {

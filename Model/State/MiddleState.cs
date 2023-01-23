@@ -1,7 +1,7 @@
-﻿using Jaywapp.BuilderWizard.Interface;
+﻿using Jaywapp.Utility.BuilderWizard.Interface;
 using System.Windows;
 
-namespace Jaywapp.BuilderWizard.Model.State
+namespace Jaywapp.Utility.BuilderWizard.Model.State
 {
     public class MiddleState : IWizardState
     {

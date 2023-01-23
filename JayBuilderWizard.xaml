@@ -1,7 +1,7 @@
-﻿<Window x:Class="Jaywapp.BuilderWizard.JayBuilderWizard"
+﻿<Window x:Class="Jaywapp.Utility.BuilderWizard.JayBuilderWizard"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:view="clr-namespace:Jaywapp.BuilderWizard.View"
+        xmlns:view="clr-namespace:Jaywapp.Utility.BuilderWizard.View"
         Width="600" Height="400"
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
         x:Name="_window">

@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Windows;
-using Jaywapp.BuilderWizard.Interface;
+using Jaywapp.Utility.BuilderWizard.Interface;
 using System;
-using Jaywapp.BuilderWizard.Model.State;
-using Jaywapp.BuilderWizard.Service;
+using Jaywapp.Utility.BuilderWizard.Model.State;
+using Jaywapp.Utility.BuilderWizard.Service;
 
-namespace Jaywapp.BuilderWizard.ViewModel
+namespace Jaywapp.Utility.BuilderWizard.ViewModel
 {
     public partial class WizardViewModel : ReactiveObject
     {
